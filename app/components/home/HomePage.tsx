@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -15,15 +16,29 @@ import {
 } from "lucide-react";
 import Button from "../shared/Button";
 
+const HERO_BG_URL =
+  "url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80)";
+
 export default function HomePage() {
+  const [bgPosition, setBgPosition] = useState<string>("center");
+
+  useEffect(() => {
+    const updatePosition = () => {
+      setBgPosition(window.innerWidth <= 767 ? "75% center" : "center");
+    };
+    updatePosition();
+    window.addEventListener("resize", updatePosition);
+    return () => window.removeEventListener("resize", updatePosition);
+  }, []);
+
   return (
     <div>
       <section
-        className="hero-bg-mobile relative min-h-screen md:min-h-[70vh] lg:h-screen w-full overflow-hidden -mt-24 pt-24"
+        className="relative min-h-[70vh] lg:h-screen w-full overflow-hidden -mt-24 pt-24"
         style={{
-          backgroundImage: "url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80)",
+          backgroundImage: HERO_BG_URL,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: bgPosition,
         }}
       >
         {/* 左側のグラデーションオーバーレイ（テキスト可読性のため） */}
@@ -32,7 +47,7 @@ export default function HomePage() {
           aria-hidden
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 min-h-screen md:min-h-[70vh] lg:min-h-screen flex items-center py-10 lg:py-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 min-h-[70vh] lg:min-h-screen flex items-center py-10 lg:py-20">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 text-teal-700 font-medium text-sm mb-6">
               <Star size={16} className="fill-current" />

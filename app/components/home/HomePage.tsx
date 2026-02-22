@@ -19,7 +19,7 @@ export default function HomePage() {
   return (
     <div>
       <section
-        className="relative min-h-[70vh] lg:h-screen w-full overflow-hidden -mt-24 pt-24"
+        className="hero-bg-mobile relative min-h-screen md:min-h-[70vh] lg:h-screen w-full overflow-hidden -mt-24 pt-24"
         style={{
           backgroundImage: "url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80)",
           backgroundSize: "cover",
@@ -32,7 +32,7 @@ export default function HomePage() {
           aria-hidden
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 min-h-[70vh] lg:min-h-screen flex items-center py-10 lg:py-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 min-h-screen md:min-h-[70vh] lg:min-h-screen flex items-center py-10 lg:py-20">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 text-teal-700 font-medium text-sm mb-6">
               <Star size={16} className="fill-current" />
@@ -60,7 +60,7 @@ export default function HomePage() {
               </Button>
             </div>
 
-            <div className="mt-10 flex items-center gap-4 text-sm text-gray-500">
+            <div className="mt-10 flex items-center gap-4 text-sm text-gray-700">
               <div className="flex -space-x-3">
                 {[1, 2, 3, 4].map((i) => (
                   <Image
@@ -321,7 +321,9 @@ export default function HomePage() {
 
             <div className="relative z-10">
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-                あなたの可能性を広げる、
+                あなたの可能性を
+                <br className="md:hidden" />
+                広げる、
                 <br />
                 最初のステップ。
               </h2>

@@ -71,7 +71,9 @@ export default function InstructorsPage() {
       <section className="pt-16 pb-16 bg-[#fdf8e7]">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-gray-900">
-            あなたの成長を支えるパートナー
+            あなたの成長を
+            <br className="md:hidden" />
+            支えるパートナー
           </h1>
           <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
             多様なバックグラウンドを持つ、経験豊富なプロの日本語講師陣。あなたにぴったりの講師が、目標達成まで伴走します。

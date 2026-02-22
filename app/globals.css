@@ -5,3 +5,10 @@
   --color-primary-light: #fdf8e7;
   --color-accent: #4fd1c5;
 }
+
+/* スマホ版のみ：ヒーロー背景画像を引いた表示（アスペクト比維持） */
+@media (max-width: 767px) {
+  .hero-bg-mobile {
+    background-size: 85% !important;
+  }
+}

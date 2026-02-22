@@ -17,7 +17,9 @@ export default function PricingPage() {
             料金体系
           </h1>
           <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            入会金は不要。あなたの学習ペースに合わせて、必要な分だけ受講できる柔軟なシステムです。
+            入会金は不要。
+            <br className="md:hidden" />
+            あなたの学習ペースに合わせて、必要な分だけ受講できる柔軟なシステムです。
           </p>
         </div>
       </section>

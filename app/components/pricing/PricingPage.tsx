@@ -4,7 +4,7 @@ import {
   ArrowRight,
   CreditCard,
 } from "lucide-react";
-import Button from "../shared/Button";
+import LineIcon from "../shared/LineIcon";
 
 export default function PricingPage() {
   return (
@@ -26,51 +26,54 @@ export default function PricingPage() {
 
       <section className="py-24">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-white rounded-[2rem] p-10 md:p-14 shadow-xl border border-gray-100 relative overflow-hidden">
+          <div className="bg-white p-10 md:p-14 border border-gray-200 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
 
-            <div className="flex flex-col md:flex-row items-center justify-between gap-10 relative z-10">
-              <div className="text-center md:text-left">
-                <div className="inline-block bg-[#F3D77A]/20 text-[#F3D77A] px-3 py-1 rounded-full text-xs font-bold mb-4">
-                  入会金・システム利用料 0円
-                </div>
-                <h2 className="text-2xl text-gray-500 font-bold mb-2">
-                  基本料金 (1回25分)
-                </h2>
-                <div className="flex items-baseline justify-center md:justify-start gap-1 text-gray-900">
-                  <span className="text-3xl font-bold">¥</span>
-                  <span className="text-6xl font-extrabold tracking-tighter">
-                    3,000
-                  </span>
-                  <span className="text-xl font-medium text-gray-500">〜</span>
-                </div>
+            <div className="relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                {[
+                  {
+                    name: "Single Lesson",
+                    price: "$20",
+                    detail: "$20 / レッスン",
+                  },
+                  {
+                    name: "Mini Pack (5 lessons)",
+                    price: "$95",
+                    detail: "$5お得、$19 / レッスン",
+                  },
+                  {
+                    name: "Growth Pack (10 lessons)",
+                    price: "$170",
+                    detail: "$30お得、$17 / レッスン",
+                  },
+                  {
+                    name: "Master Pack (15+ lessons)",
+                    price: "$225+",
+                    detail: "$75+お得、$15 / レッスン",
+                  },
+                ].map((plan, idx) => (
+                  <div
+                    key={idx}
+                    className="border border-gray-200 p-6 flex flex-col justify-between"
+                  >
+                    <h3 className="font-bold text-gray-900 mb-2">{plan.name}</h3>
+                    <div className="text-2xl font-extrabold text-gray-900 mb-1">
+                      {plan.price}
+                    </div>
+                    <p className="text-sm text-gray-600">{plan.detail}</p>
+                  </div>
+                ))}
               </div>
 
-              <div className="w-full md:w-auto flex-1 bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <CheckCircle2 size={18} className="text-[#F3D77A]" />
-                  料金に含まれるもの
-                </h3>
-                <ul className="space-y-3 text-sm text-gray-600">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">•</span>
-                    マンツーマンオンラインレッスン（25分）
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">•</span>
-                    個別カスタマイズされたカリキュラム作成
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">•</span>
-                    LINEでの学習相談・予約変更サポート
-                  </li>
-                </ul>
-              </div>
+              <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                全てのレッスンパックは購入月内に使用する必要があります。未使用のレッスンは翌月に繰り越しできません。
+              </p>
+
+              <p className="text-gray-400 text-xs">
+                ※専門的な内容（高度なビジネス日本語、専門用語、特定の試験対策等）をご希望の場合は、講師により料金が異なる場合がございます。詳細はお見積もり時にご案内いたします。
+              </p>
             </div>
-
-            <p className="text-gray-400 text-xs mt-8 text-center md:text-left">
-              ※専門的な内容（高度なビジネス日本語、専門用語、特定の試験対策等）をご希望の場合は、講師により料金が異なる場合がございます。詳細はお見積もり時にご案内いたします。
-            </p>
           </div>
         </div>
       </section>
@@ -106,7 +109,7 @@ export default function PricingPage() {
             ].map((step, idx) => (
               <div
                 key={idx}
-                className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center relative"
+                className="bg-white p-8 rounded-2xl border border-gray-200 flex flex-col items-center text-center relative"
               >
                 {idx < 2 && (
                   <ArrowRight className="hidden md:block absolute -right-6 top-1/2 transform -translate-y-1/2 text-gray-300 w-6 h-6 z-10" />
@@ -132,14 +135,15 @@ export default function PricingPage() {
           <p className="text-gray-500 mb-10 leading-relaxed">
             「週1回ペースでの月額は？」「短期集中での費用感を知りたい」など、あなたのプランに合わせたお見積もりをLINEにて無料で作成いたします。
           </p>
-          <Button
-            variant="dark"
-            icon={<MessageCircle size={20} />}
-            className="text-lg px-10 py-4 shadow-lg"
-            href="#"
+          <a
+            href="https://line.me/R/ti/p/@203ctosj"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#06C755] text-white font-bold text-sm rounded-full hover:bg-[#06C755]/90 transition-colors min-w-[44px] min-h-[44px]"
           >
+            <LineIcon size={18} className="flex-shrink-0" />
             LINEで料金について相談する
-          </Button>
+          </a>
         </div>
       </section>
     </div>

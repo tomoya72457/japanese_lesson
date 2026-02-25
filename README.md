@@ -1,4 +1,4 @@
-# Nihongo.Pro
+# Kind Japanese
 
 **世界とつながる、あなただけの日本語レッスン**
 
@@ -109,4 +109,4 @@ ISC
 
 ## 👤 作成者
 
-Nihongo.Pro Demo LP
+Kind Japanese Demo LP

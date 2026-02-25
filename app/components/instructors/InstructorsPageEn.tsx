@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { MessageCircle, MapPin } from "lucide-react";
 import Button from "../shared/Button";
+import LineIcon from "../shared/LineIcon";
+import { LINE_BUTTON_LABELS } from "@/app/constants/locale";
 
 const instructors = [
   {
@@ -157,9 +159,15 @@ export default function InstructorsPageEn() {
           <p className="text-gray-500 mb-8 leading-relaxed">
             Our counselors will listen to your learning goals and level, then recommend the best instructor for you.
           </p>
-          <Button variant="dark" icon={<MessageCircle size={18} />} href="#">
-            Free LINE learning consultation
-          </Button>
+          <a
+            href="https://line.me/R/ti/p/@203ctosj"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#06C755] text-white font-bold text-sm rounded-full hover:bg-[#06C755]/90 transition-colors min-w-[44px] min-h-[44px]"
+          >
+            <LineIcon size={18} className="flex-shrink-0" />
+            {LINE_BUTTON_LABELS.en}
+          </a>
         </div>
       </section>
     </div>

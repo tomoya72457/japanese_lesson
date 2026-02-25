@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, X, MessageCircle, Globe, ChevronDown } from "lucide-react";
-import Button from "./Button";
+import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import { Menu, X, Globe, ChevronDown } from "lucide-react";
+import LineIcon from "./LineIcon";
 import {
   NAV_ITEMS,
   LINE_BUTTON_LABELS,
@@ -21,6 +22,7 @@ export default function Header() {
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const langDropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const router = useRouter();
   const locale: Locale = getLocaleFromPathname(pathname);
   const navItems = NAV_ITEMS[locale];
 
@@ -53,7 +55,9 @@ export default function Header() {
     if (pathname === "/ja" || pathname === "/en") return "home";
     if (pathname === "/ja/instructors" || pathname === "/en/instructors") return "instructors";
     if (pathname === "/ja/pricing" || pathname === "/en/pricing") return "pricing";
+    if (pathname === "/ja/reviews" || pathname === "/en/reviews") return "reviews";
     if (pathname === "/ja/recruit" || pathname === "/en/recruit") return "recruit";
+    if (pathname === "/ja/contact" || pathname === "/en/contact") return "contact";
     if (pathname === "/ja/legal" || pathname === "/en/legal") return "legal";
     return "";
   };
@@ -61,18 +65,25 @@ export default function Header() {
 
   const homeHref = locale === "ja" ? "/ja" : "/en";
 
-  const getLocaleHref = (targetLocale: Locale) => {
+  const getLocaleHref = (targetLocale: Locale): string => {
     if (pathname.startsWith("/en")) {
       return targetLocale === "ja" ? pathname.replace("/en", "/ja") || "/ja" : pathname;
     }
-    return targetLocale === "en" ? pathname.replace("/ja", "/en") : pathname;
+    if (pathname.startsWith("/ja")) {
+      return targetLocale === "en" ? pathname.replace("/ja", "/en") : pathname;
+    }
+    return targetLocale === "ja" ? "/ja" : "/en";
   };
 
   const LanguageSelector = () => (
     <div className="relative" ref={langDropdownRef}>
       <button
         type="button"
-        onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+        onMouseDown={(e) => e.stopPropagation()}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsLangDropdownOpen((prev) => !prev);
+        }}
         className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 bg-gray-50 hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] md:min-h-[44px]"
         aria-label={LANGUAGE_SELECTOR_LABEL[locale]}
         aria-expanded={isLangDropdownOpen}
@@ -88,21 +99,27 @@ export default function Header() {
         />
       </button>
       {isLangDropdownOpen && (
-        <div className="absolute right-0 top-full mt-1 py-1 bg-white border border-gray-200 rounded-lg min-w-[120px] overflow-hidden">
-          <Link
-            href={getLocaleHref("ja")}
-            onClick={() => setIsLangDropdownOpen(false)}
-            className={`block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors ${locale === "ja" ? "bg-gray-50 font-medium text-gray-900" : "text-gray-600"}`}
+        <div className="absolute right-0 top-full mt-1 py-1 bg-white border border-gray-200 rounded-lg min-w-[120px] overflow-hidden z-[100]">
+          <button
+            type="button"
+            onClick={() => {
+              setIsLangDropdownOpen(false);
+              router.push(getLocaleHref("ja"));
+            }}
+            className={`block w-full text-left px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors min-w-[44px] min-h-[44px] flex items-center border-0 cursor-pointer font-inherit w-full ${locale === "ja" ? "bg-gray-50 font-medium text-gray-900" : "text-gray-600 bg-transparent"}`}
           >
             {LOCALE_LABELS.ja}
-          </Link>
-          <Link
-            href={getLocaleHref("en")}
-            onClick={() => setIsLangDropdownOpen(false)}
-            className={`block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors ${locale === "en" ? "bg-gray-50 font-medium text-gray-900" : "text-gray-600"}`}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setIsLangDropdownOpen(false);
+              router.push(getLocaleHref("en"));
+            }}
+            className={`block w-full text-left px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors min-w-[44px] min-h-[44px] flex items-center border-0 cursor-pointer font-inherit w-full ${locale === "en" ? "bg-gray-50 font-medium text-gray-900" : "text-gray-600 bg-transparent"}`}
           >
             {LOCALE_LABELS.en}
-          </Link>
+          </button>
         </div>
       )}
     </div>
@@ -119,12 +136,16 @@ export default function Header() {
           href={homeHref}
           className="text-2xl font-bold tracking-tight cursor-pointer flex items-center gap-2"
         >
-          <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center text-gray-900">
-            <Globe size={18} strokeWidth={2.5} />
+          <div className="w-8 h-8 rounded-xl overflow-hidden flex-shrink-0">
+            <Image
+              src="/images/IMG_3981.jpg"
+              alt="Kind Japanese"
+              width={32}
+              height={32}
+              className="w-full h-full object-cover"
+            />
           </div>
-          <span>
-            Nihongo<span className="text-[#F3D77A]">.</span>Pro
-          </span>
+          <span>Kind Japanese</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -144,9 +165,15 @@ export default function Header() {
           </ul>
           <div className="flex items-center gap-3">
             <LanguageSelector />
-            <Button variant="dark" icon={<MessageCircle size={18} />} className="px-6 py-2.5 text-sm" href="#">
+            <a
+              href="https://line.me/R/ti/p/@203ctosj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#06C755] text-white font-bold text-sm rounded-full hover:bg-[#06C755]/90 transition-colors min-w-[44px] min-h-[44px]"
+            >
+              <LineIcon size={18} className="flex-shrink-0" />
               {LINE_BUTTON_LABELS[locale]}
-            </Button>
+            </a>
           </div>
         </nav>
 
@@ -180,14 +207,15 @@ export default function Header() {
             ))}
           </ul>
           <div className="pt-4 mt-2 border-t border-gray-100">
-            <Button
-              variant="dark"
-              icon={<MessageCircle size={20} />}
-              className="w-full"
-              href="#"
+            <a
+              href="https://line.me/R/ti/p/@203ctosj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 w-full px-6 py-4 bg-[#06C755] text-white font-bold text-base rounded-full hover:bg-[#06C755]/90 transition-colors min-h-[48px]"
             >
+              <LineIcon size={20} className="flex-shrink-0" />
               {LINE_BUTTON_LABELS_MOBILE[locale]}
-            </Button>
+            </a>
           </div>
         </div>
       )}

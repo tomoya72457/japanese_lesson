@@ -15,6 +15,8 @@ import {
   CreditCard,
 } from "lucide-react";
 import Button from "../shared/Button";
+import LineIcon from "../shared/LineIcon";
+import LineSection from "./LineSection";
 
 const HERO_BG_URL =
   "url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80)";
@@ -63,9 +65,15 @@ export default function HomePage() {
               多様な経験を持つプロ講師が、あなたの目標達成をサポート。面倒なアプリは不要、LINEでご質問等承ります。
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="primary" icon={<MessageCircle size={20} />} className="text-lg px-8 py-4" href="#">
+              <a
+                href="https://line.me/R/ti/p/@203ctosj"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#06C755] text-white font-bold text-sm rounded-full hover:bg-[#06C755]/90 transition-colors min-w-[44px] min-h-[44px]"
+              >
+                <LineIcon size={18} className="flex-shrink-0" />
                 LINEで無料相談・予約
-              </Button>
+              </a>
               <Button
                 variant="outline"
                 className="text-lg px-8 py-4 bg-white/95 border-gray-400 text-gray-900 hover:border-primary hover:bg-white shadow-md"
@@ -96,6 +104,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <LineSection locale="ja" />
 
       <section className="py-14 border-y border-gray-100 bg-gradient-to-b from-gray-50/80 to-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -182,7 +192,7 @@ export default function HomePage() {
                 新しい学習体験
               </h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Nihongo.Proは、単なる語学レッスンではありません。あなたのバックグラウンドを尊重し、目標に合わせた最適なアプローチを提供する教育プラットフォームです。
+                Kind Japaneseは、単なる語学レッスンではありません。あなたのバックグラウンドを尊重し、目標に合わせた最適なアプローチを提供する教育プラットフォームです。
               </p>
 
               <div className="space-y-6">
@@ -345,14 +355,15 @@ export default function HomePage() {
               <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
                 まずはLINEで無料相談。専任スタッフがあなたの目標や現状を丁寧にヒアリングし、最適な学習プランをご提案します。
               </p>
-              <Button
-                variant="primary"
-                icon={<MessageCircle size={24} />}
-                className="text-xl px-10 py-5"
-                href="#"
+              <a
+                href="https://line.me/R/ti/p/@203ctosj"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#06C755] text-white font-bold text-sm rounded-full hover:bg-[#06C755]/90 transition-colors min-w-[44px] min-h-[44px]"
               >
+                <LineIcon size={18} className="flex-shrink-0" />
                 LINEで無料相談を始める
-              </Button>
+              </a>
             </div>
           </div>
         </div>

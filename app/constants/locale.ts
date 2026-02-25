@@ -7,17 +7,19 @@ export const NAV_ITEMS: Record<
   { id: string; label: string; href: string }[]
 > = {
   ja: [
-    { id: "home", label: "トップ", href: "/ja" },
     { id: "instructors", label: "講師紹介", href: "/ja/instructors" },
     { id: "pricing", label: "コース・料金", href: "/ja/pricing" },
+    { id: "reviews", label: "レビュー", href: "/ja/reviews" },
     { id: "recruit", label: "講師募集", href: "/ja/recruit" },
+    { id: "contact", label: "Contact", href: "/ja/contact" },
     { id: "legal", label: "特定商取引法", href: "/ja/legal" },
   ],
   en: [
-    { id: "home", label: "Home", href: "/en" },
     { id: "instructors", label: "Instructors", href: "/en/instructors" },
     { id: "pricing", label: "Courses & Pricing", href: "/en/pricing" },
+    { id: "reviews", label: "Student Reviews", href: "/en/reviews" },
     { id: "recruit", label: "Join Us", href: "/en/recruit" },
+    { id: "contact", label: "Contact", href: "/en/contact" },
     { id: "legal", label: "Legal Notice", href: "/en/legal" },
   ],
 };

@@ -39,15 +39,17 @@ export default function RecruitPageContent({ locale }: RecruitPageContentProps) 
             <p className="text-gray-700 leading-relaxed mb-10 text-left">
               {content.body}
             </p>
-            <a
-              href={content.instagramHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#8134AF] text-white font-medium rounded-full hover:opacity-90 transition-opacity min-w-[44px] min-h-[44px]"
-            >
-              <Instagram size={20} />
-              {content.instagramLabel}
-            </a>
+            <div className="flex justify-center">
+              <a
+                href={content.instagramHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#8134AF] text-white font-medium rounded-full hover:opacity-90 transition-opacity min-w-[44px] min-h-[44px]"
+              >
+                <Instagram size={20} />
+                {content.instagramLabel}
+              </a>
+            </div>
           </div>
         </div>
       </section>

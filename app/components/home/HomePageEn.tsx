@@ -19,6 +19,8 @@ import {
   MessageSquare,
 } from "lucide-react";
 import Button from "../shared/Button";
+import LineIcon from "../shared/LineIcon";
+import LineSection from "./LineSection";
 
 const HERO_BG_URL =
   "url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80)";
@@ -67,9 +69,15 @@ export default function HomePageEn() {
               Professional instructors with diverse experience support your goals. No complicated apps needed—ask questions and book via LINE.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="primary" icon={<MessageCircle size={20} />} className="text-lg px-8 py-4" href="#">
+              <a
+                href="https://line.me/R/ti/p/@203ctosj"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#06C755] text-white font-bold text-sm rounded-full hover:bg-[#06C755]/90 transition-colors min-w-[44px] min-h-[44px]"
+              >
+                <LineIcon size={18} className="flex-shrink-0" />
                 Free LINE Consultation
-              </Button>
+              </a>
               <Button
                 variant="outline"
                 className="text-lg px-8 py-4 bg-white/95 border-gray-400 text-gray-900 hover:border-primary hover:bg-white"
@@ -100,6 +108,8 @@ export default function HomePageEn() {
           </div>
         </div>
       </section>
+
+      <LineSection locale="en" />
 
       <section className="py-14 border-y border-gray-100 bg-gradient-to-b from-gray-50/80 to-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -186,7 +196,7 @@ export default function HomePageEn() {
                 that brings out your best
               </h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Nihongo.Pro is more than a language lesson. We respect your background and provide an educational platform with the best approach for your goals.
+                Kind Japanese is more than a language lesson. We respect your background and provide an educational platform with the best approach for your goals.
               </p>
 
               <div className="space-y-6">
@@ -349,14 +359,15 @@ export default function HomePageEn() {
               <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
                 Start with a free LINE consultation. Our staff will listen to your goals and current level, then propose the best learning plan for you.
               </p>
-              <Button
-                variant="primary"
-                icon={<MessageCircle size={24} />}
-                className="text-xl px-10 py-5"
-                href="#"
+              <a
+                href="https://line.me/R/ti/p/@203ctosj"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#06C755] text-white font-bold text-sm rounded-full hover:bg-[#06C755]/90 transition-colors min-w-[44px] min-h-[44px]"
               >
+                <LineIcon size={18} className="flex-shrink-0" />
                 Start free LINE consultation
-              </Button>
+              </a>
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import {
   ArrowRight,
   CreditCard,
 } from "lucide-react";
-import Button from "../shared/Button";
+import LineIcon from "../shared/LineIcon";
 
 export default function PricingPageEn() {
   return (
@@ -26,51 +26,54 @@ export default function PricingPageEn() {
 
       <section className="py-24">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-white rounded-[2rem] p-10 md:p-14 border border-gray-100 relative overflow-hidden">
+          <div className="bg-white p-10 md:p-14 border border-gray-200 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
 
-            <div className="flex flex-col md:flex-row items-center justify-between gap-10 relative z-10">
-              <div className="text-center md:text-left">
-                <div className="inline-block bg-[#F3D77A]/20 text-[#F3D77A] px-3 py-1 rounded-full text-xs font-bold mb-4">
-                  ¥0 enrollment & system fee
-                </div>
-                <h2 className="text-2xl text-gray-500 font-bold mb-2">
-                  Base rate (25 min/session)
-                </h2>
-                <div className="flex items-baseline justify-center md:justify-start gap-1 text-gray-900">
-                  <span className="text-3xl font-bold">¥</span>
-                  <span className="text-6xl font-extrabold tracking-tighter">
-                    3,000
-                  </span>
-                  <span className="text-xl font-medium text-gray-500">~</span>
-                </div>
+            <div className="relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                {[
+                  {
+                    name: "Single Lesson",
+                    price: "$20",
+                    detail: "$20 / lesson",
+                  },
+                  {
+                    name: "Mini Pack (5 lessons)",
+                    price: "$95",
+                    detail: "Save $5, $19 / lesson",
+                  },
+                  {
+                    name: "Growth Pack (10 lessons)",
+                    price: "$170",
+                    detail: "Save $30, $17 / lesson",
+                  },
+                  {
+                    name: "Master Pack (15+ lessons)",
+                    price: "$225+",
+                    detail: "Save $75+, $15 / lesson",
+                  },
+                ].map((plan, idx) => (
+                  <div
+                    key={idx}
+                    className="border border-gray-200 p-6 flex flex-col justify-between"
+                  >
+                    <h3 className="font-bold text-gray-900 mb-2">{plan.name}</h3>
+                    <div className="text-2xl font-extrabold text-gray-900 mb-1">
+                      {plan.price}
+                    </div>
+                    <p className="text-sm text-gray-600">{plan.detail}</p>
+                  </div>
+                ))}
               </div>
 
-              <div className="w-full md:w-auto flex-1 bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <CheckCircle2 size={18} className="text-[#F3D77A]" />
-                  What's included
-                </h3>
-                <ul className="space-y-3 text-sm text-gray-600">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">•</span>
-                    One-on-one online lesson (25 min)
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">•</span>
-                    Customized curriculum
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">•</span>
-                    LINE support for learning & rescheduling
-                  </li>
-                </ul>
-              </div>
+              <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                All lesson packs must be used within the month they are purchased. Unused lessons cannot be carried over to the next month.
+              </p>
+
+              <p className="text-gray-400 text-xs">
+                *Rates may vary by instructor for specialized content (advanced business Japanese, technical terms, specific exam prep). Details provided at quote.
+              </p>
             </div>
-
-            <p className="text-gray-400 text-xs mt-8 text-center md:text-left">
-              *Rates may vary by instructor for specialized content (advanced business Japanese, technical terms, specific exam prep). Details provided at quote.
-            </p>
           </div>
         </div>
       </section>
@@ -132,14 +135,15 @@ export default function PricingPageEn() {
           <p className="text-gray-500 mb-10 leading-relaxed">
             "What would monthly cost for once a week?" or "I want to know costs for intensive study"—we'll create a free quote tailored to your plan via LINE.
           </p>
-          <Button
-            variant="dark"
-            icon={<MessageCircle size={20} />}
-            className="text-lg px-10 py-4"
-            href="#"
+          <a
+            href="https://line.me/R/ti/p/@203ctosj"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#06C755] text-white font-bold text-sm rounded-full hover:bg-[#06C755]/90 transition-colors min-w-[44px] min-h-[44px]"
           >
+            <LineIcon size={18} className="flex-shrink-0" />
             Consult about pricing via LINE
-          </Button>
+          </a>
         </div>
       </section>
     </div>

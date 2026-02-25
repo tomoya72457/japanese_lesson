@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nihongo.Pro - Japanese Lessons",
+  title: "Kind Japanese - Japanese Lessons",
   description: "Connect with the world through your own Japanese lessons",
 };
 

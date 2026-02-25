@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Nihongo.Pro - Japanese Lessons",
+  title: "Kind Japanese - Japanese Lessons",
   description: "Connect with the world through your own Japanese lessons",
 };
 

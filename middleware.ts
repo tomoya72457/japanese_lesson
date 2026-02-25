@@ -6,6 +6,8 @@ const redirects: Record<string, string> = {
   "/instructors": "/en/instructors",
   "/pricing": "/en/pricing",
   "/recruit": "/en/recruit",
+  "/reviews": "/en/reviews",
+  "/contact": "/en/contact",
   "/legal": "/en/legal",
 };
 

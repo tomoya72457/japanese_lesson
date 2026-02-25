@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import LineIcon from "./LineIcon";
 import {
@@ -19,41 +19,20 @@ import {
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
-  const langDropdownRef = useRef<HTMLDivElement>(null);
+  const [langOpen, setLangOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
   const locale: Locale = getLocaleFromPathname(pathname);
   const navItems = NAV_ITEMS[locale];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (langDropdownRef.current && !langDropdownRef.current.contains(e.target as Node)) {
-        setIsLangDropdownOpen(false);
-      }
-    };
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsLangDropdownOpen(false);
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleEscape);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, []);
-
   const getCurrentId = () => {
     if (pathname === "/ja" || pathname === "/en") return "home";
-    if (pathname === "/ja/instructors" || pathname === "/en/instructors") return "instructors";
+    if (pathname.startsWith("/ja/instructors") || pathname.startsWith("/en/instructors")) return "instructors";
     if (pathname === "/ja/pricing" || pathname === "/en/pricing") return "pricing";
     if (pathname === "/ja/reviews" || pathname === "/en/reviews") return "reviews";
     if (pathname === "/ja/recruit" || pathname === "/en/recruit") return "recruit";
@@ -62,7 +41,6 @@ export default function Header() {
     return "";
   };
   const currentPage = getCurrentId();
-
   const homeHref = locale === "ja" ? "/ja" : "/en";
 
   const getLocaleHref = (targetLocale: Locale): string => {
@@ -75,52 +53,51 @@ export default function Header() {
     return targetLocale === "ja" ? "/ja" : "/en";
   };
 
-  const LanguageSelector = () => (
-    <div className="relative" ref={langDropdownRef}>
+  const LangDropdown = () => (
+    <div className="relative z-[110]">
       <button
         type="button"
-        onMouseDown={(e) => e.stopPropagation()}
-        onClick={(e) => {
-          e.stopPropagation();
-          setIsLangDropdownOpen((prev) => !prev);
-        }}
-        className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 bg-gray-50 hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] md:min-h-[44px]"
+        onClick={() => setLangOpen((prev) => !prev)}
+        className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 bg-gray-50 hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px]"
         aria-label={LANGUAGE_SELECTOR_LABEL[locale]}
-        aria-expanded={isLangDropdownOpen}
+        aria-expanded={langOpen}
         aria-haspopup="true"
       >
-        <Globe size={18} className="text-gray-600 flex-shrink-0" />
+        <Globe size={18} className="text-gray-600 flex-shrink-0" aria-hidden="true" />
         <span className="text-xs font-medium text-gray-700 whitespace-nowrap">
           {LANGUAGE_SELECTOR_LABEL[locale]}
         </span>
         <ChevronDown
           size={16}
-          className={`text-gray-500 flex-shrink-0 transition-transform ${isLangDropdownOpen ? "rotate-180" : ""}`}
+          className={`text-gray-500 flex-shrink-0 transition-transform ${langOpen ? "rotate-180" : ""}`}
+          aria-hidden="true"
         />
       </button>
-      {isLangDropdownOpen && (
-        <div className="absolute right-0 top-full mt-1 py-1 bg-white border border-gray-200 rounded-lg min-w-[120px] overflow-hidden z-[100]">
-          <button
-            type="button"
-            onClick={() => {
-              setIsLangDropdownOpen(false);
-              router.push(getLocaleHref("ja"));
-            }}
-            className={`block w-full text-left px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors min-w-[44px] min-h-[44px] flex items-center border-0 cursor-pointer font-inherit w-full ${locale === "ja" ? "bg-gray-50 font-medium text-gray-900" : "text-gray-600 bg-transparent"}`}
-          >
-            {LOCALE_LABELS.ja}
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setIsLangDropdownOpen(false);
-              router.push(getLocaleHref("en"));
-            }}
-            className={`block w-full text-left px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors min-w-[44px] min-h-[44px] flex items-center border-0 cursor-pointer font-inherit w-full ${locale === "en" ? "bg-gray-50 font-medium text-gray-900" : "text-gray-600 bg-transparent"}`}
-          >
-            {LOCALE_LABELS.en}
-          </button>
-        </div>
+
+      {langOpen && (
+        <>
+          {/* Overlay to close on outside click */}
+          <div
+            className="fixed inset-0 z-[108]"
+            onClick={() => setLangOpen(false)}
+          />
+          <div className="absolute right-0 top-full mt-1 py-1 bg-white border border-gray-200 rounded-lg min-w-[120px] overflow-hidden z-[109]">
+            <a
+              href={getLocaleHref("ja")}
+              onClick={() => setLangOpen(false)}
+              className={`block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors ${locale === "ja" ? "bg-gray-50 font-medium text-gray-900" : "text-gray-600"}`}
+            >
+              {LOCALE_LABELS.ja}
+            </a>
+            <a
+              href={getLocaleHref("en")}
+              onClick={() => setLangOpen(false)}
+              className={`block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors ${locale === "en" ? "bg-gray-50 font-medium text-gray-900" : "text-gray-600"}`}
+            >
+              {LOCALE_LABELS.en}
+            </a>
+          </div>
+        </>
       )}
     </div>
   );
@@ -164,7 +141,7 @@ export default function Header() {
             ))}
           </ul>
           <div className="flex items-center gap-3">
-            <LanguageSelector />
+            <LangDropdown />
             <a
               href="https://line.me/R/ti/p/@203ctosj"
               target="_blank"
@@ -178,7 +155,7 @@ export default function Header() {
         </nav>
 
         <div className="md:hidden flex items-center gap-2">
-          <LanguageSelector />
+          <LangDropdown />
           <button
             className="text-gray-900 p-2 bg-gray-50 rounded-xl min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

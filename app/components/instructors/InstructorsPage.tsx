@@ -1,69 +1,40 @@
-import Image from "next/image";
-import { MapPin, MessageCircle } from "lucide-react";
-import Button from "../shared/Button";
+import Link from "next/link";
 import LineIcon from "../shared/LineIcon";
 import { LINE_BUTTON_LABELS } from "@/app/constants/locale";
 
 const instructors = [
   {
     id: 1,
-    name: "佐藤 さくら",
-    furigana: "Sakura Sato",
-    image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["ビジネス日本語", "JLPT N1/N2", "上級者"],
-    location: "Tokyo, Japan",
-    bio: "大手商社での海外営業経験を活かし、実践的なビジネス日本語指導を提供。会議での発言、メール作成、異文化コミュニケーションなど、グローバルビジネスで即戦力となる日本語力を育成します。",
-    message:
-      "「正しい日本語」を超えて、相手の「心を動かす日本語」を一緒に身につけましょう。あなたのキャリアアップを全力でサポートします。",
+    slug: "seina-sato",
+    name: "Seina Sato",
+    flag: "🇯🇵",
+    bio: "国家資格取得の日本語教師｜初級〜上級まで対応",
+    jpnLevel: "ネイティブ（プロ）",
+    engLevel: "上級中級",
+    lessons: null,
+    isNew: true,
   },
   {
     id: 2,
-    name: "田中 健太",
-    furigana: "Kenta Tanaka",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["初級者歓迎", "日常会話", "英語対応可"],
-    location: "Vancouver, Canada",
-    bio: "カナダの語学学校で5年間の指導経験あり。英語でのきめ細かいサポートが可能なため、ゼロから日本語を始める方でも安心です。多様性を重んじ、リラックスした雰囲気作りを心がけています。",
-    message:
-      "語学学習において失敗は成功の素です。安心できる環境で、楽しくたくさんお話ししましょう！",
+    slug: "takeshi-matsuda",
+    name: "Takeshi Matsuda",
+    flag: "🇯🇵",
+    bio: "笑顔あふれる楽しい日本語レッスン！",
+    jpnLevel: "ネイティブ（プロ）",
+    engLevel: "中級",
+    lessons: 120,
+    isNew: false,
   },
   {
     id: 3,
-    name: "鈴木 真由美",
-    furigana: "Mayumi Suzuki",
-    image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["JLPT対策", "進学・就職面接", "アカデミック"],
-    location: "Kyoto, Japan",
-    bio: "大学の留学生センターで長年指導。JLPTの出題傾向と対策を熟知しており、効率的なスコアアップを実現します。また、論理的な文章構成や面接での自己表現の指導も得意としています。",
-    message:
-      "目標達成には明確な戦略が必要です。あなたの強みと課題を分析し、最短ルートでゴールへ導くカスタマイズレッスンを提供します。",
-  },
-  {
-    id: 4,
-    name: "山田 拓也",
-    furigana: "Takuya Yamada",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["会話力強化", "発音矯正", "中級者"],
-    location: "Osaka, Japan",
-    bio: "NHKの語学番組制作経験を活かし、実践的な会話力と発音指導に定評あり。映画やドラマを使った楽しいレッスンで、自然な日本語のニュアンスを習得していただけます。",
-    message:
-      "言葉は生き物です。教科書だけでは得られない「伝わる日本語」を、一緒に探求していきましょう。",
-  },
-  {
-    id: 5,
-    name: "高橋 美咲",
-    furigana: "Misaki Takahashi",
-    image:
-      "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["子ども日本語", "日本語教師養成", "文化紹介"],
-    location: "Sydney, Australia",
-    bio: "海外の補習校で10年以上の指導経験。お子様向けの楽しいレッスンから、日本語教師を目指す方への養成講座まで幅広く対応。日本文化に触れながら学べる授業が好評です。",
-    message:
-      "日本語の世界は無限に広がっています。あなたの興味を入口に、一緒に学びの旅を楽しみましょう。",
+    slug: "ami-mase",
+    name: "Ami Mase",
+    flag: "🇯🇵",
+    bio: "はじめまして、あみです！一緒に日本語を楽しく学びましょう",
+    jpnLevel: "ネイティブ",
+    engLevel: "上級中級",
+    lessons: 64,
+    isNew: false,
   },
 ];
 
@@ -84,66 +55,54 @@ export default function InstructorsPage() {
       </section>
 
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-8">
             {instructors.map((instructor) => (
               <div
                 key={instructor.id}
-                className="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 flex flex-col group"
+                className="border border-gray-200 p-6 flex flex-col justify-between"
               >
-                <div className="relative aspect-square overflow-hidden p-6 pb-0 min-h-[280px]">
-                  <Image
-                    src={instructor.image}
-                    alt={instructor.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-700 flex items-center gap-1 shadow-sm">
-                    <MapPin size={12} className="text-[#F3D77A]" />
-                    {instructor.location}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-lg font-bold text-gray-900">
+                      {instructor.name} {instructor.flag}
+                    </h3>
+                    {instructor.isNew ? (
+                      <span className="text-xs font-bold text-white bg-gray-900 px-2 py-0.5 rounded">New</span>
+                    ) : (
+                      <span className="text-xs text-gray-500">{instructor.lessons} レッスン</span>
+                    )}
+                  </div>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-5">
+                    {instructor.bio}
+                  </p>
+                  <div className="space-y-1.5 text-xs text-gray-500 mb-6">
+                    <div className="flex gap-2">
+                      <span className="font-medium text-gray-700 w-10">JPN:</span>
+                      <span>{instructor.jpnLevel}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="font-medium text-gray-700 w-10">ENG:</span>
+                      <span>{instructor.engLevel}</span>
+                    </div>
                   </div>
                 </div>
-
-                <div className="p-8 flex-grow flex flex-col">
-                  <div className="mb-2">
-                    <h3 className="text-2xl font-bold text-gray-900">
-                      {instructor.name}
-                    </h3>
-                    <p className="text-gray-400 text-sm">
-                      {instructor.furigana}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 mb-6 mt-4">
-                    {instructor.tags.map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 bg-gray-50 text-gray-600 text-xs font-medium rounded-lg border border-gray-100"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="mb-6 flex-grow">
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {instructor.bio}
-                    </p>
-                  </div>
-
-                  <div className="mb-8 p-4 bg-[#F3D77A]/10 rounded-xl relative">
-                    <div className="absolute top-4 left-4 text-[#F3D77A] opacity-20">
-                      <MessageCircle size={32} />
-                    </div>
-                    <p className="text-gray-700 text-sm font-medium leading-relaxed relative z-10 italic pl-2">
-                      &quot;{instructor.message}&quot;
-                    </p>
-                  </div>
-
-                  <Button variant="outline" className="w-full mt-auto text-sm" href="#">
-                    この講師について質問する
-                  </Button>
+                <div className="flex flex-col gap-3">
+                  <Link
+                    href={`/ja/instructors/${instructor.slug}`}
+                    className="text-center text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors py-2"
+                  >
+                    詳細を見る
+                  </Link>
+                  <a
+                    href="https://line.me/R/ti/p/@203ctosj"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-[#06C755] text-white font-bold text-sm rounded-full hover:bg-[#06C755]/90 transition-colors min-h-[44px]"
+                  >
+                    <LineIcon size={16} className="flex-shrink-0" />
+                    LINEで相談する
+                  </a>
                 </div>
               </div>
             ))}

@@ -51,10 +51,6 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 min-h-[70vh] lg:min-h-screen flex items-center py-10 lg:py-20">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F3D77A]/20 text-[#F3D77A] font-medium text-sm mb-6">
-              <Star size={16} className="fill-current" />
-              <span>受講生の満足度 98%</span>
-            </div>
             <h1 className="text-4xl lg:text-6xl font-extrabold tracking-tight leading-[1.15] mb-6 text-gray-900">
               世界とつながる、<br />
               <span className="text-primary">あなただけの</span>

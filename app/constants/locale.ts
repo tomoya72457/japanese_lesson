@@ -12,7 +12,6 @@ export const NAV_ITEMS: Record<
     { id: "reviews", label: "レビュー", href: "/ja/reviews" },
     { id: "recruit", label: "講師募集", href: "/ja/recruit" },
     { id: "contact", label: "Contact", href: "/ja/contact" },
-    { id: "legal", label: "特定商取引法", href: "/ja/legal" },
   ],
   en: [
     { id: "instructors", label: "Instructors", href: "/en/instructors" },
@@ -20,7 +19,6 @@ export const NAV_ITEMS: Record<
     { id: "reviews", label: "Student Reviews", href: "/en/reviews" },
     { id: "recruit", label: "Join Us", href: "/en/recruit" },
     { id: "contact", label: "Contact", href: "/en/contact" },
-    { id: "legal", label: "Legal Notice", href: "/en/legal" },
   ],
 };
 

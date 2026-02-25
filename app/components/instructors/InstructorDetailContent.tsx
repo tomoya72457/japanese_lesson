@@ -22,6 +22,7 @@ const INSTRUCTOR_DATA: Record<
     tagline: string;
     engLevel: string;
     badge?: string;
+    youtubeId?: string;
     about: { ja: string; en: string };
     sections: { title: string; content: string }[];
   }
@@ -31,6 +32,7 @@ const INSTRUCTOR_DATA: Record<
     flag: "🇯🇵",
     tagline: "Nationally Certified Japanese Teacher | From Beginners to Advanced. Learn at your own pace and level up with confidence while having fun. Kids and adults are all welcome. English support available. A safe and comfortable learning environment.",
     engLevel: "Upper Intermediate",
+    youtubeId: "gah6Az4e-8w",
     about: {
       ja: "横浜・神奈川出身。現在カナダ在住。明るく自然な標準語で話します。日本語・英語の両方でサポート可能です。",
       en: "From Yokohama, Kanagawa, Japan. Currently living in Canada. I speak bright, natural standard Japanese. I can support you in both Japanese and English!",
@@ -128,6 +130,7 @@ I look forward to meeting you in a trial lesson.`,
     tagline: "Fun and smile-filled Japanese lessons for everyone!",
     engLevel: "Intermediate",
     badge: "Registered Japanese Language Teacher",
+    youtubeId: "bdBnerbCIlQ",
     about: {
       ja: "大阪出身、現在は北海道・札幌在住。日本語教師養成講座修了、国家資格「日本語教師」取得。大学で教員養成・プロジェクトマネジメント、語学学校で日本語を教えています。",
       en: `Hi, I'm Takeshi, currently living in Japan!
@@ -151,6 +154,7 @@ Let's enjoy learning Japanese together!`,
     flag: "🇯🇵",
     tagline: "Hi, I'm Ami! Nice to meet you! Let's enjoy learning Japanese together!!",
     engLevel: "Upper Intermediate",
+    youtubeId: "gN51uVzSHv0",
     about: {
       ja: "愛知県出身。2026年3月からオーストラリアで保育士として働く予定。子供から大人まで幅広い年齢の方との会話が好きです。",
       en: `Hi, I'm Ami from Aichi, Japan!
@@ -237,6 +241,20 @@ export default function InstructorDetailContent({ slug, locale }: InstructorDeta
               </div>
             </div>
           </div>
+
+          {instructor.youtubeId && (
+            <div>
+              <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+                <iframe
+                  src={`https://www.youtube.com/embed/${instructor.youtubeId}`}
+                  title={`${instructor.name} introduction video`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full border border-gray-200"
+                />
+              </div>
+            </div>
+          )}
 
           {instructor.sections.map((section, idx) => (
             <div key={idx}>

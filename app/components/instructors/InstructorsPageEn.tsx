@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import LineIcon from "../shared/LineIcon";
 import { LINE_BUTTON_LABELS } from "@/app/constants/locale";
 
@@ -8,11 +9,12 @@ const instructors = [
     slug: "seina-sato",
     name: "Seina Sato",
     flag: "🇯🇵",
-    bio: "Nationally Certified Japanese Teacher | From Beginners to Advanced",
-    jpnLevel: "Professional",
-    engLevel: "Upper Intermediate",
+    bio: "🎖️ Nationally Certified Japanese Teacher | From Beginners to Advanced 🐣 Learn at your own...",
+    jpnLevel: "professional",
+    engLevel: "upper intermediate",
     lessons: null,
     isNew: true,
+    image: "/images/SeinaSato.jpg",
   },
   {
     id: 2,
@@ -20,10 +22,11 @@ const instructors = [
     name: "Takeshi Matsuda",
     flag: "🇯🇵",
     bio: "Fun and smile-filled Japanese lessons for everyone!",
-    jpnLevel: "Professional",
-    engLevel: "Intermediate",
+    jpnLevel: "professional",
+    engLevel: "intermediate",
     lessons: 120,
     isNew: false,
+    image: "/images/TakeshiMathuda.png",
   },
   {
     id: 3,
@@ -32,9 +35,10 @@ const instructors = [
     flag: "🇯🇵",
     bio: "Hi, I'm Ami! Nice to meet you! Let's enjoy learning Japanese",
     jpnLevel: "Native",
-    engLevel: "Upper Intermediate",
+    engLevel: "upper intermediate",
     lessons: 64,
     isNew: false,
+    image: "/images/AmiMase.png",
   },
 ];
 
@@ -54,55 +58,50 @@ export default function InstructorsPageEn() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-16">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {instructors.map((instructor) => (
-              <div
-                key={instructor.id}
-                className="border border-gray-200 p-6 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-lg font-bold text-gray-900">
-                      {instructor.name} {instructor.flag}
-                    </h3>
-                    {instructor.isNew ? (
-                      <span className="text-xs font-bold text-white bg-gray-900 px-2 py-0.5 rounded">New</span>
-                    ) : (
-                      <span className="text-xs text-gray-500">{instructor.lessons} lessons</span>
-                    )}
-                  </div>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-5">
+              <div key={instructor.id} className="flex gap-5">
+                {/* Photo */}
+                <div className="flex-shrink-0 w-36 h-36 bg-gray-100 overflow-hidden">
+                  <Image
+                    src={instructor.image}
+                    alt={instructor.name}
+                    width={144}
+                    height={144}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Text */}
+                <div className="flex flex-col gap-1.5 min-w-0">
+                  <h3 className="font-bold text-gray-900 underline underline-offset-2">
+                    {instructor.name} {instructor.flag}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
                     {instructor.bio}
                   </p>
-                  <div className="space-y-1.5 text-xs text-gray-500 mb-6">
-                    <div className="flex gap-2">
-                      <span className="font-medium text-gray-700 w-10">JPN:</span>
-                      <span>{instructor.jpnLevel}</span>
-                    </div>
-                    <div className="flex gap-2">
-                      <span className="font-medium text-gray-700 w-10">ENG:</span>
-                      <span>{instructor.engLevel}</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-3">
                   <Link
                     href={`/en/instructors/${instructor.slug}`}
-                    className="text-center text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors py-2"
+                    className="text-sm underline underline-offset-2 text-gray-900 hover:text-gray-600 transition-colors"
                   >
                     Learn more
                   </Link>
-                  <a
-                    href="https://line.me/R/ti/p/@203ctosj"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-[#06C755] text-white font-bold text-sm rounded-full hover:bg-[#06C755]/90 transition-colors min-h-[44px]"
-                  >
-                    <LineIcon size={16} className="flex-shrink-0" />
-                    Contact via LINE
-                  </a>
+                  <div className="text-sm text-gray-700 space-y-0.5 mt-1">
+                    <p>
+                      JPN:{" "}
+                      <span className="text-blue-600 font-medium">
+                        {instructor.jpnLevel}
+                      </span>
+                    </p>
+                    <p>ENG: {instructor.engLevel}</p>
+                    {instructor.isNew ? (
+                      <p className="font-medium text-gray-700">New</p>
+                    ) : (
+                      <p className="text-gray-500">{instructor.lessons} lessons</p>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}

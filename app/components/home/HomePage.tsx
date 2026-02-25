@@ -268,15 +268,13 @@ export default function HomePage() {
 
           <div className="flex gap-6 overflow-x-auto pb-4 -mx-6 px-6 scroll-smooth">
             {[
-              { name: "Sakura.S", role: "ビジネス日本語エキスパート", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-              { name: "Kenta.T", role: "初級者・発音矯正サポート", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-              { name: "Mayumi.S", role: "JLPT・アカデミック指導", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-              { name: "Takuya.Y", role: "会話力強化・発音矯正", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-              { name: "Misaki.T", role: "子ども日本語・文化紹介", img: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+              { name: "Seina Sato", role: "国家資格取得の日本語教師", img: "/images/SeinaSato.jpg", slug: "seina-sato" },
+              { name: "Takeshi Matsuda", role: "笑顔あふれる楽しいレッスン", img: "/images/TakeshiMathuda.png", slug: "takeshi-matsuda" },
+              { name: "Ami Mase", role: "一緒に日本語を楽しく学ぼう", img: "/images/AmiMase.png", slug: "ami-mase" },
             ].map((inst, i) => (
               <Link
                 key={i}
-                href="/ja/instructors"
+                href={`/ja/instructors/${inst.slug}`}
                 className="flex-shrink-0 w-[200px] md:w-[240px] group cursor-pointer block"
               >
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 relative">

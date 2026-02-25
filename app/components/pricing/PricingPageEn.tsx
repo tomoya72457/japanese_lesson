@@ -139,9 +139,9 @@ export default function PricingPageEn() {
             href="https://line.me/R/ti/p/@203ctosj"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#06C755] text-white font-bold text-sm rounded-full hover:bg-[#06C755]/90 transition-colors min-w-[44px] min-h-[44px]"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#06C755] text-white font-bold text-base rounded-full hover:bg-[#06C755]/90 transition-colors min-w-[44px] min-h-[56px]"
           >
-            <LineIcon size={18} className="flex-shrink-0" />
+            <LineIcon size={22} className="flex-shrink-0" />
             Consult about pricing via LINE
           </a>
         </div>

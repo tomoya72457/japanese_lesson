@@ -16,10 +16,80 @@ import {
   type Locale,
 } from "@/app/constants/locale";
 
+// ── ヘッダーの外（モジュールのトップレベル）で定義することで
+//    Header が再レンダリングされても同じコンポーネント型として扱われる
+interface LangDropdownProps {
+  open: boolean;
+  onToggle: () => void;
+  onClose: () => void;
+  locale: Locale;
+  jaHref: string;
+  enHref: string;
+}
+
+function LangDropdown({ open, onToggle, onClose, locale, jaHref, enHref }: LangDropdownProps) {
+  return (
+    <div className="relative z-[110]">
+      <button
+        type="button"
+        onClick={onToggle}
+        className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 bg-gray-50 hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px]"
+        aria-label={LANGUAGE_SELECTOR_LABEL[locale]}
+        aria-expanded={open}
+        aria-haspopup="true"
+      >
+        <Globe size={18} className="text-gray-600 flex-shrink-0" aria-hidden="true" />
+        <span className="text-xs font-medium text-gray-700 whitespace-nowrap">
+          {LANGUAGE_SELECTOR_LABEL[locale]}
+        </span>
+        <ChevronDown
+          size={16}
+          className={`text-gray-500 flex-shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
+          aria-hidden="true"
+        />
+      </button>
+
+      {open && (
+        <>
+          {/* 画面全体を覆う透明オーバーレイ：クリックで閉じる */}
+          <div
+            className="fixed inset-0 z-[108]"
+            onClick={onClose}
+            aria-hidden="true"
+          />
+          {/* ドロップダウン本体 */}
+          <div className="absolute right-0 top-full mt-1 py-1 bg-white border border-gray-200 rounded-lg min-w-[120px] overflow-hidden z-[109]">
+            <a
+              href={jaHref}
+              onClick={onClose}
+              className={`block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors ${
+                locale === "ja" ? "bg-gray-50 font-medium text-gray-900" : "text-gray-600"
+              }`}
+            >
+              {LOCALE_LABELS.ja}
+            </a>
+            <a
+              href={enHref}
+              onClick={onClose}
+              className={`block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors ${
+                locale === "en" ? "bg-gray-50 font-medium text-gray-900" : "text-gray-600"
+              }`}
+            >
+              {LOCALE_LABELS.en}
+            </a>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+
   const pathname = usePathname();
   const locale: Locale = getLocaleFromPathname(pathname);
   const navItems = NAV_ITEMS[locale];
@@ -43,64 +113,20 @@ export default function Header() {
   const currentPage = getCurrentId();
   const homeHref = locale === "ja" ? "/ja" : "/en";
 
-  const getLocaleHref = (targetLocale: Locale): string => {
-    if (pathname.startsWith("/en")) {
-      return targetLocale === "ja" ? pathname.replace("/en", "/ja") || "/ja" : pathname;
-    }
-    if (pathname.startsWith("/ja")) {
-      return targetLocale === "en" ? pathname.replace("/ja", "/en") : pathname;
-    }
-    return targetLocale === "ja" ? "/ja" : "/en";
-  };
+  const jaHref = pathname.startsWith("/en")
+    ? pathname.replace("/en", "/ja") || "/ja"
+    : pathname.startsWith("/ja")
+    ? pathname
+    : "/ja";
 
-  const LangDropdown = () => (
-    <div className="relative z-[110]">
-      <button
-        type="button"
-        onClick={() => setLangOpen((prev) => !prev)}
-        className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 bg-gray-50 hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px]"
-        aria-label={LANGUAGE_SELECTOR_LABEL[locale]}
-        aria-expanded={langOpen}
-        aria-haspopup="true"
-      >
-        <Globe size={18} className="text-gray-600 flex-shrink-0" aria-hidden="true" />
-        <span className="text-xs font-medium text-gray-700 whitespace-nowrap">
-          {LANGUAGE_SELECTOR_LABEL[locale]}
-        </span>
-        <ChevronDown
-          size={16}
-          className={`text-gray-500 flex-shrink-0 transition-transform ${langOpen ? "rotate-180" : ""}`}
-          aria-hidden="true"
-        />
-      </button>
+  const enHref = pathname.startsWith("/ja")
+    ? pathname.replace("/ja", "/en")
+    : pathname.startsWith("/en")
+    ? pathname
+    : "/en";
 
-      {langOpen && (
-        <>
-          {/* Overlay to close on outside click */}
-          <div
-            className="fixed inset-0 z-[108]"
-            onClick={() => setLangOpen(false)}
-          />
-          <div className="absolute right-0 top-full mt-1 py-1 bg-white border border-gray-200 rounded-lg min-w-[120px] overflow-hidden z-[109]">
-            <a
-              href={getLocaleHref("ja")}
-              onClick={() => setLangOpen(false)}
-              className={`block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors ${locale === "ja" ? "bg-gray-50 font-medium text-gray-900" : "text-gray-600"}`}
-            >
-              {LOCALE_LABELS.ja}
-            </a>
-            <a
-              href={getLocaleHref("en")}
-              onClick={() => setLangOpen(false)}
-              className={`block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors ${locale === "en" ? "bg-gray-50 font-medium text-gray-900" : "text-gray-600"}`}
-            >
-              {LOCALE_LABELS.en}
-            </a>
-          </div>
-        </>
-      )}
-    </div>
-  );
+  const handleToggleLang = () => setLangOpen((prev) => !prev);
+  const handleCloseLang = () => setLangOpen(false);
 
   return (
     <header
@@ -109,6 +135,7 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        {/* ロゴ */}
         <Link
           href={homeHref}
           className="text-2xl font-bold tracking-tight cursor-pointer flex items-center gap-2"
@@ -125,6 +152,7 @@ export default function Header() {
           <span>Kind Japanese</span>
         </Link>
 
+        {/* デスクトップナビ */}
         <nav className="hidden md:flex items-center gap-8">
           <ul className="flex items-center gap-6 font-medium text-sm text-gray-600 whitespace-nowrap">
             {navItems.map((item) => (
@@ -141,7 +169,14 @@ export default function Header() {
             ))}
           </ul>
           <div className="flex items-center gap-3">
-            <LangDropdown />
+            <LangDropdown
+              open={langOpen}
+              onToggle={handleToggleLang}
+              onClose={handleCloseLang}
+              locale={locale}
+              jaHref={jaHref}
+              enHref={enHref}
+            />
             <a
               href="https://line.me/R/ti/p/@203ctosj"
               target="_blank"
@@ -154,8 +189,16 @@ export default function Header() {
           </div>
         </nav>
 
+        {/* モバイル：言語ボタン＋ハンバーガー */}
         <div className="md:hidden flex items-center gap-2">
-          <LangDropdown />
+          <LangDropdown
+            open={langOpen}
+            onToggle={handleToggleLang}
+            onClose={handleCloseLang}
+            locale={locale}
+            jaHref={jaHref}
+            enHref={enHref}
+          />
           <button
             className="text-gray-900 p-2 bg-gray-50 rounded-xl min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -166,6 +209,7 @@ export default function Header() {
         </div>
       </div>
 
+      {/* モバイルメニュー */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 py-6 px-6 flex flex-col gap-4">
           <ul className="flex flex-col gap-2 text-lg font-medium text-gray-600">

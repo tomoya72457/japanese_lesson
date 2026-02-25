@@ -39,9 +39,6 @@ function LangDropdown({ open, onToggle, onClose, locale, jaHref, enHref }: LangD
         aria-haspopup="true"
       >
         <Globe size={18} className="text-gray-600 flex-shrink-0" aria-hidden="true" />
-        <span className="text-xs font-medium text-gray-700 whitespace-nowrap">
-          {LANGUAGE_SELECTOR_LABEL[locale]}
-        </span>
         <ChevronDown
           size={16}
           className={`text-gray-500 flex-shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
@@ -149,7 +146,7 @@ export default function Header() {
               className="w-full h-full object-cover"
             />
           </div>
-          <span>Kind Japanese</span>
+          <span className="text-lg">Kind Japanese</span>
         </Link>
 
         {/* デスクトップナビ */}

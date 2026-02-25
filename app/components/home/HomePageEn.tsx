@@ -17,6 +17,8 @@ import {
   GraduationCap,
   FileText,
   MessageSquare,
+  Calendar,
+  Video,
 } from "lucide-react";
 import Button from "../shared/Button";
 import LineIcon from "../shared/LineIcon";
@@ -81,25 +83,6 @@ export default function HomePageEn() {
               >
                 View Instructors
               </Button>
-            </div>
-
-            <div className="mt-10 flex items-center gap-4 text-sm text-gray-700">
-              <div className="flex -space-x-3">
-                {[1, 2, 3, 4].map((i) => (
-                  <Image
-                    key={i}
-                    src={`https://i.pravatar.cc/100?img=${i + 10}`}
-                    alt="Student"
-                    width={40}
-                    height={40}
-                    className="w-10 h-10 rounded-full border-2 border-white object-cover"
-                  />
-                ))}
-              </div>
-              <p>
-                <span className="font-bold text-gray-900">1,000+</span>
-                {" "}students learning worldwide
-              </p>
             </div>
           </div>
         </div>
@@ -266,7 +249,7 @@ export default function HomePageEn() {
               className="hidden md:flex text-[#F3D77A]"
               href="/en/instructors"
             >
-              View all instructors <ArrowRight size={18} className="ml-1" />
+              Instructor profiles here <ArrowRight size={18} className="ml-1" />
             </Button>
           </div>
 
@@ -300,39 +283,83 @@ export default function HomePageEn() {
             ))}
           </div>
           <Button variant="outline" className="w-full mt-8 md:hidden" href="/en/instructors">
-            View all instructors
+            Instructor profiles here
           </Button>
         </div>
       </section>
 
       <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold tracking-tight mb-4 text-gray-900">
-            How to get started
+        <div className="max-w-2xl mx-auto px-6">
+          <h2 className="text-3xl font-bold tracking-tight mb-2 text-gray-900 text-center">
+            How It Works
           </h2>
-          <p className="text-gray-500 mb-16">
-            No complicated procedures. Start easily in 4 simple steps.
+          <p className="text-gray-500 mb-12 text-center text-sm md:text-base">
+            No complicated procedures. Start easily in 5 simple steps.
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 relative">
-            <div className="hidden md:block absolute top-12 left-[12%] right-[12%] h-0.5 bg-gray-200"></div>
-            {[
-              { num: "01", title: "Add LINE", icon: <MessageCircle /> },
-              { num: "02", title: "Goal consultation", icon: <Users /> },
-              { num: "03", title: "Schedule & payment", icon: <CreditCard /> },
-              { num: "04", title: "Start lessons", icon: <Globe /> },
-            ].map((step, idx) => (
-              <div key={idx} className="relative z-10 flex flex-col items-center">
-                <div className="w-24 h-24 rounded-full bg-white border-4 border-gray-50 flex items-center justify-center text-primary mb-4 relative">
-                  {step.icon}
-                  <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center text-xs font-bold">
-                    {step.num}
+          <div className="relative">
+            {/* Vertical connector line */}
+            <div className="hidden md:block absolute left-6 top-0 bottom-0 w-px bg-gray-200" />
+
+            <div className="space-y-0">
+              {[
+                {
+                  num: "1",
+                  title: "Add our official LINE account",
+                  desc: "First, please add our official LINE account, which we use as our main communication tool.",
+                  icon: <MessageCircle size={20} />,
+                },
+                {
+                  num: "2",
+                  title: "Schedule your trial lesson",
+                  desc: "On LINE, you and the teacher will decide a date and time for the trial lesson that works best for you.",
+                  icon: <Calendar size={20} />,
+                },
+                {
+                  num: "3",
+                  title: "Take the trial lesson (Zoom or Google Meet)",
+                  desc: "The trial lesson will be held online via Zoom or Google Meet at your scheduled time.",
+                  icon: <Video size={20} />,
+                },
+                {
+                  num: "4",
+                  title: "Choose your course & start learning",
+                  desc: "If you'd like to continue, simply sign up for the course that fits you best and start your lessons.",
+                  icon: <CreditCard size={20} />,
+                },
+                {
+                  num: "5",
+                  title: "Monthly Reviews",
+                  desc: "With monthly reviews from your teacher, you can clearly see your progress.",
+                  icon: <Star size={20} />,
+                },
+              ].map((step, idx) => (
+                <div
+                  key={idx}
+                  className="flex gap-4 md:gap-6 py-6 border-b border-gray-200 last:border-b-0 first:pt-0"
+                >
+                  <div className="flex-shrink-0 flex flex-col items-center">
+                    <div className="w-12 h-12 rounded-full bg-gray-900 text-white flex items-center justify-center text-lg font-bold">
+                      {step.num}
+                    </div>
+                    <div className="flex mt-2 w-10 h-10 rounded-full bg-white border border-gray-200 items-center justify-center text-primary">
+                      {step.icon}
+                    </div>
+                  </div>
+                  <div className="flex-grow min-w-0 pt-1">
+                    <h3 className="font-bold text-gray-900 mb-2 text-base md:text-lg">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
-                <h3 className="font-bold text-gray-900">{step.title}</h3>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
+          <p className="mt-10 pt-6 border-t border-gray-200 text-sm text-gray-500 text-center">
+            (If you have any questions, feel free to message your teacher on LINE anytime.)
+          </p>
         </div>
       </section>
 

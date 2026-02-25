@@ -13,6 +13,8 @@ import {
   Star,
   AlertCircle,
   CreditCard,
+  Calendar,
+  Video,
 } from "lucide-react";
 import Button from "../shared/Button";
 import LineIcon from "../shared/LineIcon";
@@ -77,25 +79,6 @@ export default function HomePage() {
               >
                 講師を見てみる
               </Button>
-            </div>
-
-            <div className="mt-10 flex items-center gap-4 text-sm text-gray-700">
-              <div className="flex -space-x-3">
-                {[1, 2, 3, 4].map((i) => (
-                  <Image
-                    key={i}
-                    src={`https://i.pravatar.cc/100?img=${i + 10}`}
-                    alt="Student"
-                    width={40}
-                    height={40}
-                    className="w-10 h-10 rounded-full border-2 border-white object-cover"
-                  />
-                ))}
-              </div>
-              <p>
-                世界中で<span className="font-bold text-gray-900">1,000+</span>
-                名が学習中
-              </p>
             </div>
           </div>
         </div>
@@ -262,7 +245,7 @@ export default function HomePage() {
               className="hidden md:flex text-[#F3D77A]"
               href="/ja/instructors"
             >
-              すべての講師を見る <ArrowRight size={18} className="ml-1" />
+              講師プロフィールはこちら <ArrowRight size={18} className="ml-1" />
             </Button>
           </div>
 
@@ -296,39 +279,83 @@ export default function HomePage() {
             ))}
           </div>
           <Button variant="outline" className="w-full mt-8 md:hidden" href="/ja/instructors">
-            すべての講師を見る
+            講師プロフィールはこちら
           </Button>
         </div>
       </section>
 
       <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold tracking-tight mb-4 text-gray-900">
-            学習スタートまでの流れ
+        <div className="max-w-2xl mx-auto px-6">
+          <h2 className="text-3xl font-bold tracking-tight mb-2 text-gray-900 text-center">
+            ご利用の流れ
           </h2>
-          <p className="text-gray-500 mb-16">
-            複雑な手続きは一切不要。4つのステップで簡単に始められます。
+          <p className="text-gray-500 mb-12 text-center text-sm md:text-base">
+            複雑な手続きは一切不要。5つのステップで簡単に始められます。
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 relative">
-            <div className="hidden md:block absolute top-12 left-[12%] right-[12%] h-0.5 bg-gray-200"></div>
-            {[
-              { num: "01", title: "LINE追加", icon: <MessageCircle /> },
-              { num: "02", title: "目標ヒアリング", icon: <Users /> },
-              { num: "03", title: "日程調整・決済", icon: <CreditCard /> },
-              { num: "04", title: "レッスン開始", icon: <Globe /> },
-            ].map((step, idx) => (
-              <div key={idx} className="relative z-10 flex flex-col items-center">
-                <div className="w-24 h-24 rounded-full bg-white border-4 border-gray-50 shadow-sm flex items-center justify-center text-primary mb-4 relative">
-                  {step.icon}
-                  <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center text-xs font-bold">
-                    {step.num}
+          <div className="relative">
+            {/* 縦の接続線 */}
+            <div className="hidden md:block absolute left-6 top-0 bottom-0 w-px bg-gray-200" />
+
+            <div className="space-y-0">
+              {[
+                {
+                  num: "1",
+                  title: "公式LINEアカウントを追加",
+                  desc: "はじめに、メインの連絡ツールとして使用している公式LINEアカウントを追加してください。",
+                  icon: <MessageCircle size={20} />,
+                },
+                {
+                  num: "2",
+                  title: "体験レッスンの日程を決める",
+                  desc: "LINEで、講師と体験レッスンの日程・時間を決めます。",
+                  icon: <Calendar size={20} />,
+                },
+                {
+                  num: "3",
+                  title: "体験レッスンを受ける（Zoom / Google Meet）",
+                  desc: "体験レッスンは、指定の日時にZoomまたはGoogle Meetでオンラインで行われます。",
+                  icon: <Video size={20} />,
+                },
+                {
+                  num: "4",
+                  title: "コースを選んでレッスン開始",
+                  desc: "続けたい場合は、お求めに合うコースに申し込み、レッスンを開始します。",
+                  icon: <CreditCard size={20} />,
+                },
+                {
+                  num: "5",
+                  title: "月次レビュー",
+                  desc: "講師による月次レビューで、学習の進捗を確認できます。",
+                  icon: <Star size={20} />,
+                },
+              ].map((step, idx) => (
+                <div
+                  key={idx}
+                  className="flex gap-4 md:gap-6 py-6 border-b border-gray-200 last:border-b-0 first:pt-0"
+                >
+                  <div className="flex-shrink-0 flex flex-col items-center">
+                    <div className="w-12 h-12 rounded-full bg-gray-900 text-white flex items-center justify-center text-lg font-bold">
+                      {step.num}
+                    </div>
+                    <div className="flex mt-2 w-10 h-10 rounded-full bg-white border border-gray-200 items-center justify-center text-primary">
+                      {step.icon}
+                    </div>
+                  </div>
+                  <div className="flex-grow min-w-0 pt-1">
+                    <h3 className="font-bold text-gray-900 mb-2 text-base md:text-lg">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
-                <h3 className="font-bold text-gray-900">{step.title}</h3>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
+          <p className="mt-10 pt-6 border-t border-gray-200 text-sm text-gray-500 text-center">
+            （ご質問があれば、いつでもLINEで講師にメッセージできます。）
+          </p>
         </div>
       </section>
 

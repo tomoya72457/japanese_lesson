@@ -7,7 +7,7 @@ export default function NotFound() {
       <p className="text-gray-600 mb-6">お探しのページが見つかりませんでした</p>
       <Link
         href="/"
-        className="px-6 py-3 bg-[#f3d77a] text-gray-900 font-bold rounded-full hover:bg-yellow-400 transition-colors"
+        className="px-6 py-3 bg-[#F3D77A] text-gray-900 font-bold rounded-full hover:bg-[#F3D77A]/90 transition-colors"
       >
         トップへ戻る
       </Link>

@@ -15,15 +15,15 @@ interface ButtonProps {
 }
 
 const baseStyle =
-  "inline-flex items-center justify-center px-8 py-4 font-bold transition-all duration-300 rounded-full w-full sm:w-auto text-lg shadow-sm";
+  "inline-flex items-center justify-center px-8 py-4 font-bold transition-all duration-300 rounded-full w-full sm:w-auto text-lg";
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-primary text-gray-900 hover:bg-yellow-400 hover:shadow-md hover:-translate-y-0.5",
+    "bg-[#F3D77A] text-gray-900 hover:bg-[#F3D77A]/90 hover:-translate-y-0.5",
   secondary:
-    "bg-accent text-white hover:bg-teal-500 hover:shadow-md hover:-translate-y-0.5",
+    "bg-[#F3D77A] text-gray-900 hover:bg-[#F3D77A]/90 hover:-translate-y-0.5",
   outline:
     "bg-transparent border-2 border-gray-200 text-gray-700 hover:border-primary hover:text-gray-900",
-  dark: "bg-gray-900 text-white hover:bg-gray-800 hover:shadow-md hover:-translate-y-0.5",
+  dark: "bg-gray-900 text-white hover:bg-gray-800 hover:-translate-y-0.5",
   ghost:
     "bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900 shadow-none",
 };

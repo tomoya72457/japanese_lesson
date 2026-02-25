@@ -5,78 +5,78 @@ import Button from "../shared/Button";
 const instructors = [
   {
     id: 1,
-    name: "佐藤 さくら",
-    furigana: "Sakura Sato",
+    name: "Sakura Sato",
+    furigana: "佐藤 さくら",
     image:
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["ビジネス日本語", "JLPT N1/N2", "上級者"],
+    tags: ["Business Japanese", "JLPT N1/N2", "Advanced"],
     location: "Tokyo, Japan",
-    bio: "大手商社での海外営業経験を活かし、実践的なビジネス日本語指導を提供。会議での発言、メール作成、異文化コミュニケーションなど、グローバルビジネスで即戦力となる日本語力を育成します。",
+    bio: "Leveraging overseas sales experience at a major trading company to provide practical business Japanese instruction. From meeting presentations to email writing and cross-cultural communication—develop Japanese skills that make you immediately effective in global business.",
     message:
-      "「正しい日本語」を超えて、相手の「心を動かす日本語」を一緒に身につけましょう。あなたのキャリアアップを全力でサポートします。",
+      "Let's go beyond \"correct Japanese\" and master Japanese that moves people's hearts. I'll fully support your career growth.",
   },
   {
     id: 2,
-    name: "田中 健太",
-    furigana: "Kenta Tanaka",
+    name: "Kenta Tanaka",
+    furigana: "田中 健太",
     image:
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["初級者歓迎", "日常会話", "英語対応可"],
+    tags: ["Beginners welcome", "Daily conversation", "English support"],
     location: "Vancouver, Canada",
-    bio: "カナダの語学学校で5年間の指導経験あり。英語でのきめ細かいサポートが可能なため、ゼロから日本語を始める方でも安心です。多様性を重んじ、リラックスした雰囲気作りを心がけています。",
+    bio: "5 years of teaching experience at a Canadian language school. Can provide detailed support in English, so even complete beginners feel at ease. Values diversity and creates a relaxed atmosphere.",
     message:
-      "語学学習において失敗は成功の素です。安心できる環境で、楽しくたくさんお話ししましょう！",
+      "In language learning, mistakes are the seeds of success. Let's talk a lot and have fun in a safe environment!",
   },
   {
     id: 3,
-    name: "鈴木 真由美",
-    furigana: "Mayumi Suzuki",
+    name: "Mayumi Suzuki",
+    furigana: "鈴木 真由美",
     image:
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["JLPT対策", "進学・就職面接", "アカデミック"],
+    tags: ["JLPT prep", "Interview prep", "Academic"],
     location: "Kyoto, Japan",
-    bio: "大学の留学生センターで長年指導。JLPTの出題傾向と対策を熟知しており、効率的なスコアアップを実現します。また、論理的な文章構成や面接での自己表現の指導も得意としています。",
+    bio: "Long-time instructor at a university international center. Deep knowledge of JLPT trends and strategies for efficient score improvement. Also skilled in logical writing structure and self-expression in interviews.",
     message:
-      "目標達成には明確な戦略が必要です。あなたの強みと課題を分析し、最短ルートでゴールへ導くカスタマイズレッスンを提供します。",
+      "Clear strategy is key to reaching your goals. I'll analyze your strengths and challenges and provide customized lessons to get you there fastest.",
   },
   {
     id: 4,
-    name: "山田 拓也",
-    furigana: "Takuya Yamada",
+    name: "Takuya Yamada",
+    furigana: "山田 拓也",
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["会話力強化", "発音矯正", "中級者"],
+    tags: ["Conversation skills", "Pronunciation", "Intermediate"],
     location: "Osaka, Japan",
-    bio: "NHKの語学番組制作経験を活かし、実践的な会話力と発音指導に定評あり。映画やドラマを使った楽しいレッスンで、自然な日本語のニュアンスを習得していただけます。",
+    bio: "NHK language program production experience enables practical conversation and pronunciation instruction. Fun lessons using movies and dramas help you master natural Japanese nuance.",
     message:
-      "言葉は生き物です。教科書だけでは得られない「伝わる日本語」を、一緒に探求していきましょう。",
+      "Language is alive. Let's explore \"Japanese that communicates\" together—something you can't get from textbooks alone.",
   },
   {
     id: 5,
-    name: "高橋 美咲",
-    furigana: "Misaki Takahashi",
+    name: "Misaki Takahashi",
+    furigana: "高橋 美咲",
     image:
       "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["子ども日本語", "日本語教師養成", "文化紹介"],
+    tags: ["Kids Japanese", "Teacher training", "Culture"],
     location: "Sydney, Australia",
-    bio: "海外の補習校で10年以上の指導経験。お子様向けの楽しいレッスンから、日本語教師を目指す方への養成講座まで幅広く対応。日本文化に触れながら学べる授業が好評です。",
+    bio: "Over 10 years at overseas Japanese schools. From fun lessons for children to training for aspiring teachers—wide range of support. Lessons that introduce Japanese culture are highly rated.",
     message:
-      "日本語の世界は無限に広がっています。あなたの興味を入口に、一緒に学びの旅を楽しみましょう。",
+      "The world of Japanese is infinitely vast. Let's enjoy the journey of learning together, starting from your interests.",
   },
 ];
 
-export default function InstructorsPage() {
+export default function InstructorsPageEn() {
   return (
     <div>
       <section className="pt-16 pb-16 bg-[#fdf8e7]">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-gray-900">
-            あなたの成長を
+            Your partners in
             <br className="md:hidden" />
-            支えるパートナー
+            growth
           </h1>
           <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            多様なバックグラウンドを持つ、経験豊富なプロの日本語講師陣。あなたにぴったりの講師が、目標達成まで伴走します。
+            Experienced professional Japanese instructors with diverse backgrounds. The right instructor will support you to your goals.
           </p>
         </div>
       </section>
@@ -87,7 +87,7 @@ export default function InstructorsPage() {
             {instructors.map((instructor) => (
               <div
                 key={instructor.id}
-                className="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 flex flex-col group"
+                className="bg-white rounded-[2rem] overflow-hidden border border-gray-100 transition-all duration-300 flex flex-col group"
               >
                 <div className="relative aspect-square overflow-hidden p-6 pb-0 min-h-[280px]">
                   <Image
@@ -97,7 +97,7 @@ export default function InstructorsPage() {
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-700 flex items-center gap-1 shadow-sm">
+                  <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-700 flex items-center gap-1 border border-gray-100">
                     <MapPin size={12} className="text-[#F3D77A]" />
                     {instructor.location}
                   </div>
@@ -140,7 +140,7 @@ export default function InstructorsPage() {
                   </div>
 
                   <Button variant="outline" className="w-full mt-auto text-sm" href="#">
-                    この講師について質問する
+                    Ask about this instructor
                   </Button>
                 </div>
               </div>
@@ -152,13 +152,13 @@ export default function InstructorsPage() {
       <section className="py-20 bg-gray-50 border-t border-gray-100 text-center">
         <div className="max-w-2xl mx-auto px-6">
           <h2 className="text-2xl font-bold mb-4 text-gray-900">
-            講師選びに迷ったら？
+            Not sure which instructor to choose?
           </h2>
           <p className="text-gray-500 mb-8 leading-relaxed">
-            専任カウンセラーがあなたの学習目的やレベルをお伺いし、最適な講師をご提案します。
+            Our counselors will listen to your learning goals and level, then recommend the best instructor for you.
           </p>
           <Button variant="dark" icon={<MessageCircle size={18} />} href="#">
-            LINEで学習相談をする（無料）
+            Free LINE learning consultation
           </Button>
         </div>
       </section>

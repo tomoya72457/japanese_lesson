@@ -4,5 +4,5 @@ export const COLORS = {
   text: "#2D3748",
   textLight: "#718096",
   bg: "#FFFFFF",
-  accent: "#4FD1C5",
+  accent: "#F3D77A",
 };

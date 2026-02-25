@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
-import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Nihongo.Pro - Japanese Lessons",
   description: "Connect with the world through your own Japanese lessons",
 };
 
-export default function RootLayout({
+export default function EnLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body suppressHydrationWarning>{children}</body>
-    </html>
-  );
+}) {
+  return <>{children}</>;
 }
